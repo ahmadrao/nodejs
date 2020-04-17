@@ -1,0 +1,66 @@
+<%- include('partials/header')  %>
+
+<% if(!error){ %>
+
+  <div class="container-fluid">
+
+    <!-- Header -->
+
+
+    <a href="http://localhost:3010/uploadedFiles/<%= user.profile_address %>" target="_blank" ><img src="http://localhost:3010/uploadedFiles/<%= user.profile_address %>"  class="img-sm rounded mb-4 mb-md-0 clicker" style="width:70px;height:70px;object-fit: cover;"></a>
+
+    <table class="table table-bordered table-hover" width="40%" style="margin-top:30px">
+     <tbody>
+       <tr>
+         <td>User ID</td>
+         <td> <%= user.ID %></td>
+       </tr>
+       <tr>
+         <td>First name</td>
+         <td><%= user.first_name %></td>
+       </tr>
+       <tr>
+         <td>Family name</td>
+         <td><%= user.family_name %></td>
+       </tr>
+       <tr>
+         <td>Date of Birth</td>
+         <td> <%= user.date_of_birth %></td>
+       </tr>
+       <tr>
+         <td>ID Number</td>
+         <td><%= user.id_number %></td>
+       </tr>
+
+       <tr>
+         <td>Phone Number</td>
+         <td><%= user.phone_number %></td>
+       </tr>
+
+       <tr>
+         <td>Email</td>
+         <td><%= user.email %></td>
+       </tr>
+
+       <tr>
+         <td>Gender</td>
+         <td><%= user.gender %></td>
+       </tr>
+
+       <tr>
+         <td>Account Status</td>
+         <td><%= user.account_status %></td>
+       </tr>
+
+       <tr>
+         <td>Account Type</td>
+         <td><%= user.account_type %></td>
+       </tr>
+     </tbody>
+   </table>
+
+    <% }else{ %>
+      <div class="container"><%= message %></div>
+      <% } %>
+
+      <%- include('partials/footer')  %>

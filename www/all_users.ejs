@@ -1,0 +1,74 @@
+<%- include('partials/header')  %>
+
+<% if(!error){ %>
+
+
+  <div class="container-fluid">
+
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+
+    </div>
+
+
+
+    <div class="table-responsive">
+      <h3>All Users</h3>
+      <table class="table table-bordered striped table-hover" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+          <tr colspan="2">
+            <th></th>
+            <th>User ID</th>
+            <th>First Name</th>
+            <th>Family Name</th>
+            <th>ID Number</th>
+            <th>Phone Number</th>
+            <th>Account Status</th>
+            <th>Account Type</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+
+        <tbody>
+
+          <% data.forEach(function(o) { %>
+            <% if (o.ID != userID) {%>
+            <tr>
+              <td><a href="http://localhost:3010/uploadedFiles/<%= o.profile_address %>" target="_blank" ><img src="http://localhost:3010/uploadedFiles/<%= o.profile_address %>"  class="img-sm rounded mb-4 mb-md-0 clicker" style="width:70px;height:70px;object-fit: cover;"></a></td>
+              <td><%= o.ID %></td>
+              <td><%= o.first_name %></td>
+              <td><%= o.family_name  %></td>
+              <td><%= o.id_number %></td>
+              <td><b><%= o.phone_number %></b></td>
+              <td><b><%= o.account_status %></b></td>
+              <td><b><%= o.account_type %></b></td>
+              <td  style="text-align:center">
+                <a href="/users/web/change_account_type?id=<%= o.ID%>"><span class="badge badge-primary">Make Employee</span></a>
+                <a href="/users/web/details?id=<%= o.ID%>"><span class="badge badge-success">details</span></a>
+                <a href="/users/web/delete?id=<%= o.ID%>"><span class="badge badge-danger">delete</span></a>
+              </td>
+            </tr>
+            <%}%>
+            <% }); %>
+
+          </tbody>
+        </table>
+      </div>
+
+
+      <br/><br/><br/>
+
+      <script type="text/javascript">
+        $(document).ready(function () {
+          $('#dataTable').dataTable({
+            "order": []
+          } );
+        });
+      </script>
+
+
+      <% }else{ %>
+        <div class="container"><h5><%= message %></h5></div>
+        <% } %>
+
+        <%- include('partials/footer')  %>

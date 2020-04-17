@@ -1,0 +1,65 @@
+<%- include('partials/header')  %>
+
+<% if(!error){ %>
+
+
+  <div class="container-fluid">
+
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+
+    </div>
+
+    <div class="table-responsive">
+      <h3>All Orders</h3>
+      <table class="table table-bordered striped table-hover" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+          <tr colspan="2">
+            <th>Order ID</th>
+            <th>Status</th>
+            <th>Stripe Transaction</th>
+            <th>Amount</th>
+            <th>Date</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+
+        <tbody>
+
+          <% data.forEach(function(o) { %>
+            <tr>
+              <td><%= o.ID %></td>
+              <td><%= o.status %></td>
+
+              <td><%= o.stripe_transaction_id %></td>
+              <td>$<%= o.amount %></td>
+              <td><%= moment(Number(o.date)).format("llll") %></td>
+              <td  style="text-align:center">
+                <a href="/orders/web/details?id=<%= o.ID%>"><span class="badge badge-success">details</span></a>
+                <a href="/orders/web/complete?id=<%= o.ID%>"><span class="badge badge-primary">complete order</span></a>
+              <a href="/orders/web/delete?id=<%= o.ID%>"><span class="badge badge-danger">delete</span></a>
+              </td>
+            </tr>
+            <% }); %>
+
+          </tbody>
+        </table>
+      </div>
+
+
+      <br/><br/><br/>
+
+      <script type="text/javascript">
+        $(document).ready(function () {
+          $('#dataTable').dataTable({
+            "order": []
+          } );
+        });
+      </script>
+
+
+      <% }else{ %>
+        <div class="container"><h5><%= message %></h5></div>
+        <% } %>
+
+        <%- include('partials/footer')  %>

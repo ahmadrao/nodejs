@@ -1,0 +1,86 @@
+<%- include('partials/header')  %>
+
+<!-- Begin Page Content -->
+
+      <% if(!error){ %>
+
+
+
+       <div class="container-fluid">
+
+
+
+         <!-- Page Heading -->
+         <div class="d-sm-flex align-items-center justify-content-between mb-4">
+           <h1 class="h3 mb-0 text-gray-800">Overall report</h1>
+
+         </div>
+
+         <!-- Content Row -->
+         <div class="row">
+
+           <!-- Earnings (Monthly) Card Example -->
+           <div class="col-xl-3 col-md-6 mb-4">
+             <div class="card border-left-primary shadow h-100 py-2">
+               <div class="card-body">
+                 <div class="row no-gutters align-items-center">
+                   <div class="col mr-2">
+                     <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total Users</div>
+                     <div class="h5 mb-0 font-weight-bold text-gray-800"><%= data.allUsers %></div>
+                   </div>
+                  
+                 </div>
+               </div>
+             </div>
+           </div>
+
+           <!-- Earnings (Monthly) Card Example -->
+           <div class="col-xl-3 col-md-6 mb-4">
+             <div class="card border-left-success shadow h-100 py-2">
+               <div class="card-body">
+                 <div class="row no-gutters align-items-center">
+                   <div class="col mr-2">
+                     <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Total Products</div>
+                     <div class="h5 mb-0 font-weight-bold text-gray-800"> <%= data.allProducts %></div>
+                   </div>
+
+                 </div>
+               </div>
+             </div>
+           </div>
+
+           <!-- Earnings (Monthly) Card Example -->
+           <div class="col-xl-3 col-md-6 mb-4">
+             <div class="card border-left-warning  shadow h-100 py-2">
+               <div class="card-body">
+                 <div class="row no-gutters align-items-center">
+                   <div class="col mr-2">
+                     <div class="text-xs font-weight-bold text-warning  text-uppercase mb-1">Total Orders</div>
+                     <div class="h5 mb-0 font-weight-bold text-gray-800">Rs. <%= data.allOrders %></div>
+                   </div>
+
+                 </div>
+               </div>
+             </div>
+           </div>
+
+           <div class="col-xl-3 col-md-6 mb-4">
+             <div class="card border-left-info  shadow h-100 py-2">
+               <div class="card-body">
+                 <div class="row no-gutters align-items-center">
+                   <div class="col mr-2">
+                     <div class="text-xs font-weight-bold text-info  text-uppercase mb-1">Total Payment</div>
+                     <div class="h5 mb-0 font-weight-bold text-gray-800">$ <%= data.allPayments %></div>
+                   </div>
+
+                 </div>
+               </div>
+             </div>
+           </div>
+         </div>
+
+       <% }else{ %>
+         <div class="container"><h5><%= message %></h5></div>
+       <% } %>
+
+<%- include('partials/footer')  %>

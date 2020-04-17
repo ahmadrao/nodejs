@@ -1,0 +1,17 @@
+<%- include('partials/header')  %>
+
+<% if(!error){ %>
+
+  <div class="container-fluid">
+
+    <!-- Header -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+      <h1 class="h3 mb-0 text-gray-800"></h1>
+    </div>
+
+
+<% }else{ %>
+      <div class="container"><%= message %></div>
+<% } %>
+
+<%- include('partials/footer')  %>

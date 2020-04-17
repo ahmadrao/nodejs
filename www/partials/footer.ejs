@@ -1,0 +1,49 @@
+
+<a class="scroll-to-top rounded" href="#page-top">
+  <i class="fas fa-angle-up"></i>
+</a>
+</div>
+<br>
+<script src="/www/vendor/jquery/jquery.min.js"></script>
+<script src="/www/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<script src="/www/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+<script src="/www/js/sb-admin-2.min.js"></script>
+<script src="/www/js/socket-io.js"></script>
+
+<script src="/www/vendor/datatables/jquery.dataTables.min.js"></script>
+<script src="/www/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+<script src="/www/js/demo/datatables-demo.js"></script>
+
+<script type="text/javascript">
+  Notification.requestPermission();
+  var socket = io.connect('http://localhost:3010');
+  socket.on("ping", (data)=>{
+    socket.emit('pong',{"user" : "web"});
+  });
+
+  socket.on("show-order-notification", (data)=>{
+    var notification = new Notification(data.name + " has placed on order.");
+    notification.onclick = function (event) {
+      window.location.href = '/orders/web/details?id=' + data.orderID;
+      event.preventDefault();
+      notification.close();
+    }
+  });
+
+  socket.on("show-user-arrival-notification", (data)=>{
+    var notification = new Notification(data.name + " has arrived to collect order.");
+    notification.onclick = function (event) {
+      window.location.href = '/orders/web/details?id=' + data.orderID;
+      event.preventDefault();
+      notification.close();
+    }
+  });
+
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,142 @@
+<%- include('partials/header')  %>
+
+<% if(!error){ %>
+
+  <script type="text/javascript">
+
+      function PrintElem(elem)
+      {
+          Popup($(elem).html());
+      }
+
+      function Popup(data)
+      {
+          var mywindow = window.open('', 'my div', 'height=400,width=600');
+          mywindow.document.write('<html><head><title>Food Resturant</title>');
+          mywindow.document.write('</head><body >');
+          mywindow.document.write(data);
+          mywindow.document.write('</body></html>');
+
+          mywindow.print();
+          mywindow.close();
+
+          return true;
+      }
+
+  </script>
+
+  <div class="container-fluid">
+    <input type="button" onclick="PrintElem('#order_print')" value="Print Order" class="btn btn-success"/><br><br>
+    <!-- Header -->
+    <div id="order_print">
+    <h3>Order Details </h3>
+    <table class="table table-bordered table-hover" width="40%" style="margin-top:30px">
+      <tbody>
+        <tr>
+          <td>Order ID</td>
+          <td> <%= order.ID %></td>
+        </tr>
+        <tr>
+          <td>Status</td>
+          <td> <%= order.status %></td>
+        </tr>
+        <tr>
+          <td>Transaction ID</td>
+          <td> <%= order.stripe_transaction_id %></td>
+        </tr>
+        <tr>
+          <td>Amount</td>
+          <td>$ <%= order.amount %></td>
+        </tr>
+        <tr>
+          <td>Date</td>
+          <td> <%= moment(Number(order.date)).format("llll")  %></td>
+        </tr>
+      </tbody>
+    </table><br>
+
+    <% if (userFound) { %>
+      <h3>User Details</h3>
+      <table class="table table-bordered table-hover" width="40%" style="margin-top:30px">
+        <tbody>
+          <tr>
+            <td>User ID</td>
+            <td> <%= userData.ID %></td>
+          </tr>
+          <tr>
+            <td>First name</td>
+            <td> <%= userData.first_name %></td>
+          </tr>
+          <tr>
+            <td>Family name</td>
+            <td> <%= userData.family_name %></td>
+          </tr>
+          <tr>
+            <td>Phone number</td>
+            <td> <%= userData.phone_number %></td>
+          </tr>
+          <tr>
+            <td>Gender</td>
+            <td> <%= userData.gender %></td>
+          </tr>
+        </tbody>
+      </table>
+      <% } else { %>
+        <h3>Guest User Has placed the order</h3>
+        <% } %>
+        <br>
+
+
+        <% if (vechileFound) { %>
+          <h3>Vehicle Details</h3>
+          <table class="table table-bordered table-hover" width="40%" style="margin-top:30px">
+            <tbody>
+              <tr>
+                <td>Vehicle ID</td>
+                <td> <%= vechile.ID %></td>
+              </tr>
+              <tr>
+                <td>Make of car</td>
+                <td> <%= vechile.make_of_car %></td>
+              </tr>
+              <tr>
+                <td>Model of car</td>
+                <td> <%= vechile.model_of_car %></td>
+              </tr>
+              <tr>
+                <td>Color of car</td>
+                <td> <%= vechile.color_of_car %></td>
+              </tr>
+              <tr>
+                <td>License plate</td>
+                <td> <%= vechile.license_plate %></td>
+              </tr>
+            </tbody>
+          </table>
+          <% } else { %>
+            <h3>Vehicle Details not found</h3>
+            <% } %>
+
+            <br>
+
+            <% if (cartFound) { %>
+              <h3>Cart Details</h3>
+              <table class="table table-bordered table-hover" width="40%" style="margin-top:30px">
+                <tbody>
+                  <% cart.forEach(function(o) { %>
+                    <tr>
+                      <td><%= o.name %></td>
+                      <td>Quantity <%= o.quantity  %></td>
+                    </tr>
+                    <% }); %>
+                  </tbody>
+                </table>
+                <% } else { %>
+                  <h3>Cart details not found</h3>
+                  <% } %>
+</div>
+                  <% }else{ %>
+                    <div class="container"><%= message %></div>
+                    <% } %>
+
+                    <%- include('partials/footer')  %>
