@@ -22,7 +22,7 @@
     "multer": "^1.4.2",
     "mysql": "^2.18.0",
     "mysql-express-session": "^0.5.2",
-    "nodemailer": "^6.4.2",
+    "nodemailer": "^6.4.16",
     "save": "^2.4.0",
     "socket.io": "^2.3.0",
     "stripe": "^7.14.0",
