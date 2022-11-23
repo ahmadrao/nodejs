@@ -24,7 +24,7 @@
     "mysql-express-session": "^0.5.2",
     "nodemailer": "^6.4.2",
     "save": "^2.4.0",
-    "socket.io": "^2.3.0",
+    "socket.io": "^2.5.0",
     "stripe": "^7.14.0",
     "sweetalert": "^2.1.2",
     "uuid": "^3.4.0"
